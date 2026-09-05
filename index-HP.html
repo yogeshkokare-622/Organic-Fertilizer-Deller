@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organic Fertilizer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f9f2;
+        }
+
+        header {
+            background-color: #228B22;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: #f9f9f9;
+        }
+
+        .hero img {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+
+        .hero h2 {
+            font-size: 32px;
+            color: #228B22;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            color: #555;
+            font-size: 18px;
+        }
+
+        .about,
+        .contact {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .about h3,
+        .contact h3 {
+            color: #228B22;
+            text-align: center;
+        }
+
+        .about p {
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        .contact p {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #228B22;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Organic Fertilizer</h1>
+        <nav>
+            <a onclick="redirectTo('login.html')">Login</a>
+            <a onclick="redirectTo('register.html')">Register</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <img src="plantimage.jpg" alt="Plant Image">
+        <h2>Grow Healthy with Organic Fertilizer</h2>
+        <p>Eco-friendly solutions for sustainable farming and a better tomorrow.</p>
+    </div>
+
+    <div class="about">
+        <h3>About Organic Fertilizer</h3>
+        <p>
+            Organic fertilizers are natural substances that provide essential nutrients to plants and improve soil
+            health. They are made from compost, manure, green waste, and other eco-friendly sources.
+        </p>
+    </div>
+
+    <div class="contact">
+        <h3>Contact Us</h3>
+        <p>Email: organicfertilizer@gmail.com<br>
+            Phone: +91 8766327992<br>
+            Address: Green Farm Road, Pune, Maharashtra, India
+        </p>
+    </div>
+
+    <footer>
+        &copy; 2025 Organic Fertilizer. All rights reserved.
+    </footer>
+
+    <!-- Firebase SDK Scripts -->
+    <script type="module" src="index.js"></script>
+
+</body>
+
+</html>

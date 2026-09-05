@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <script src="firebase.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .register-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.3);
+            width: 380px;
+            text-align: center;
+        }
+
+        .register-container h2 {
+            margin-bottom: 20px;
+            color: #185a9d;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 18px;
+        }
+
+        .input-box input,
+        .input-box select {
+            width: 100%;
+            padding: 12px;
+            padding-left: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #185a9d;
+            color: white;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0d3d70;
+        }
+
+        .back-btn {
+            background: #4CAF50;
+        }
+
+        .back-btn:hover {
+            background: darkgreen;
+        }
+
+        .note {
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .note a {
+            color: #185a9d;
+            text-decoration: none;
+        }
+
+        .note a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="register-container">
+        <h2>Register</h2>
+
+        <div class="input-box">
+            <input type="text" id="fullname" placeholder="Full Name">
+        </div>
+
+        <div class="input-box">
+            <input type="email" id="email" placeholder="Email Address">
+        </div>
+
+        <div class="input-box">
+            <input type="password" id="password" placeholder="Create Password">
+        </div>
+
+        <div class="input-box">
+            <select id="role">
+                <option value="">Select Role</option>
+                <option value="seller">Seller</option>
+                <option value="shopowner">Shop Owner</option>
+            </select>
+        </div>
+
+        <button onclick="registerUser()">Register</button>
+        <div class="note">
+            <p>Already have an account? <a href="login.html">Login Here</a></p>
+        </div>
+    </div>
+    <script type="module" src="register.js"></script>
+</body>
+
+</html>

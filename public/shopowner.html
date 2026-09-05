@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Organic Fertilizer / Shopowner</title>
+    <style>
+        :root {
+            --green: #28a745;
+            --dark-green: #1e7a2a;
+            --card-bg: #fff;
+            --muted: #666;
+            font-family: Inter, system-ui, Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f6f7fb;
+            color: #111;
+        }
+
+        /* Header */
+        .header {
+            background-color: green;
+            color: white;
+            padding: 10px;
+        }
+
+        .flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        /* layout wrap */
+        .wrap {
+            max-width: 1100px;
+            margin: 18px auto;
+            padding: 0 16px;
+        }
+
+        /* dashboard cards */
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 18px;
+            margin: 18px auto;
+            max-width: 1100px;
+            padding: 0 16px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+            cursor: default;
+        }
+
+        .title {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 8px;
+        }
+
+        .value {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .status {
+            font-size: 13px;
+            color: green;
+            margin-top: 8px;
+        }
+
+        /* main content */
+        .main-content {
+            display: grid;
+            gap: 20px;
+            padding: 0 16px;
+        }
+
+        @media(min-width:901px) {
+            .main-content {
+                grid-template-columns: 300px 1fr;
+                max-width: 1100px;
+                margin: 20px auto;
+            }
+        }
+
+        @media(max-width:900px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+
+        .list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .list li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            transition: background .12s;
+        }
+
+        .list li:hover {
+            background: #fbfffb;
+        }
+
+        .search {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .product {
+            display: flex;
+            gap: 14px;
+            align-items: flex-start;
+            padding: 12px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+            background: #fff;
+        }
+
+        .product img {
+            width: 220px;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        .product .meta {
+            flex: 1;
+        }
+
+        .product .meta h3 {
+            margin: 0 0 6px 0;
+            font-size: 16px;
+        }
+
+        .product .meta p {
+            margin: 0;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .product .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .add-button {
+            background: var(--green);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .add-button:hover {
+            filter: brightness(.98);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #fff;
+            margin: 8% auto;
+            padding: 18px;
+            border-radius: 8px;
+            width: 420px;
+            position: relative;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .close-button {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            background: red;
+            color: #fff;
+            border: none;
+            font-size: 16px;
+            padding: 6px 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .profile-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #fff;
+            color: green;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        /* small form fields inside modal */
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+
+        <div class="flex">
+            <h1>ORGANIC FERTILIZER</h1>
+            <!-- Header Profile Circle -->
+            <div class="profile">
+                <div id="profileCircle"
+                    style="width:40px;height:40px;border-radius:50%;background:white;color:green;display:flex;justify-content:center;align-items:center;cursor:pointer;">
+                    👤</div>
+            </div>
+
+            <!-- Feedback Modal -->
+            <div id="feedbackModal" class="modal"
+                style="display:none;position:fixed;z-index:1000;left:0;top:0;width:100%;height:100%;background-color:rgba(0,0,0,0.5);">
+                <div class="modal-content"
+                    style="width:400px;margin:10% auto;padding:20px;border-radius:8px;background:white;position:relative;">
+                    <button class="close-button" onclick="closeFeedback()"
+                        style="position:absolute;right:10px;top:10px;background:red;color:white;border:none;font-size:16px;padding:5px 10px;border-radius:50%;cursor:pointer;">×</button>
+                    <h3>Send Feedback</h3>
+                    <input type="text" id="feedbackName" placeholder="Your Name" />
+                    <input type="email" id="feedbackEmail" placeholder="Your Email" />
+                    <textarea id="feedbackMessage" placeholder="Your Feedback"></textarea>
+                    <button onclick="sendFeedback()">Submit Feedback</button>
+                </div>
+            </div>
+    </header>
+    <!-- Dashboard cards -->
+    <div class="dashboard wrap">
+
+        <div class="card">
+            <div class="title">All Products</div>
+            <div id="card-products" class="value">0</div>
+            <div class="status">Explore latest products</div>
+        </div>
+
+        <div class="card">
+            <div class="title">My Orders</div>
+            <div id="card-orders" class="value">0</div>
+            <div class="status">Pending & completed orders</div>
+        </div>
+
+        <!-- I added id="card-message" for JS hook only (no visual change) -->
+        <!-- <div id="card-message" class="card" style="cursor:pointer;">
+            <div class="title">Message Us</div>
+            <div class="value">Support</div>
+            <div class="status">Send feedback or enquiry</div>
+        </div> -->
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content wrap">
+        <!-- Left column: sellers -->
+        <aside class="card" style="padding:14px;">
+            <h3 style="margin-top:12px;">My Orders</h3>
+            <ul id="sellers" class="list"></ul>
+
+            <div id="orders-view" class="card hidden" style="margin-top:16px;">
+                <h2 style="margin-top:0"></h2>
+                <div id="orders-list"></div>
+            </div>
+        </aside>
+
+        <!-- Right column: products / orders  -->
+        <section>
+            <div id="products-view" class="card">
+                <div style="display:flex;justify-content:space-between;align-items:center;">
+                    <h2 id="products-title" style="margin:0">All Products</h2>
+                    <div class="row">
+
+                    </div>
+                </div>
+                <div id="products-list" style="margin-top:16px;"></div>
+            </div>
+
+
+
+
+        </section>
+    </div>
+
+    <!-- Message Modal (reuses modal style) -->
+    <div id="messageModal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeMessageModal()">×</button>
+            <h3>Contact Seller</h3>
+            <input id="msg-to-seller" placeholder="Seller ID / Name" readonly />
+            <input id="msg-subject" placeholder="Subject" />
+            <textarea id="msg-body" rows="5" placeholder="Write your message"></textarea>
+            <button id="send-to-seller" class="add-button">Send</button>
+            <div id="msg-status" style="margin-top:8px;color:green"></div>
+        </div>
+    </div>
+
+    <!-- Feedback Modal (hidden initially) -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <button class="close-button" onclick="closeFeedback()">×</button>
+            <h3>Send Feedback</h3>
+            <input type="text" id="feedbackName" placeholder="Your Name" />
+            <input type="email" id="feedbackEmail" placeholder="Your Email" />
+            <textarea id="feedbackMessage" placeholder="Your Feedback"></textarea>
+            <button id="feedbackSubmit" class="add-button">Submit Feedback</button>
+        </div>
+    </div>
+
+    <!-- Firebase + App Logic -->
+    <script src="shopowner.js" type="module"></script>
+</body>
+
+</html>
